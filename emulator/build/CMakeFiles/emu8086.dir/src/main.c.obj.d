@@ -10,9 +10,11 @@ CMakeFiles/emu8086.dir/src/main.c.obj: \
  C:/msys64/mingw64/include/_mingw_off_t.h \
  C:/msys64/mingw64/include/swprintf.inl \
  C:/msys64/mingw64/include/sec_api/stdio_s.h \
+ C:/msys64/mingw64/include/string.h C:/msys64/mingw64/include/crtdefs.h \
+ C:/msys64/mingw64/include/sec_api/string_s.h \
  C:/Users/jeswi/Documents/8086-emulator/emulator/include/cpu.h \
  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/15.1.0/include/stdint.h \
- C:/msys64/mingw64/include/stdint.h C:/msys64/mingw64/include/crtdefs.h \
+ C:/msys64/mingw64/include/stdint.h \
  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/15.1.0/include/stddef.h \
  C:/msys64/mingw64/include/stddef.h \
  C:/Users/jeswi/Documents/8086-emulator/emulator/include/cpu.h \

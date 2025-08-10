@@ -1,5 +1,9 @@
 #ifndef CPU_H
 #define CPU_H
+#define FLAG_ZF 0x0040
+#define FLAG_SF 0x0080
+#define FLAG_CF 0x0001
+#define FLAG_OF 0x0800
 
 #include<stdint.h>
 #include "../include/cpu.h"
