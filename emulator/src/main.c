@@ -45,10 +45,45 @@ int main() {
     mem_write8(&mem, reset_addr + 16, 0xEB); // modrm
     mem_write16(&mem, reset_addr + 17, 0x0001); // imm16
 
-    // HLT
-    mem_write8(&mem, reset_addr + 19, 0xF4);
+    // MOV BX, 0x1234
+    mem_write8(&mem, reset_addr + 19, 0xBB);
+    mem_write16(&mem, reset_addr + 20, 0x1234);
 
-    for (int i = 0; i < 20; ++i) {
+    // Use 0x0100 as safe data address
+    uint16_t data_addr = 0x0100;
+
+    // MOV [data_addr], BX (0x89 0x1E <lo> <hi>)
+    mem_write8(&mem, reset_addr + 22, 0x89);
+    mem_write8(&mem, reset_addr + 23, 0x1E);
+    mem_write16(&mem, reset_addr + 24, data_addr);
+
+    // MOV AX, [data_addr] (0x8B 0x06 <lo> <hi>)
+    mem_write8(&mem, reset_addr + 26, 0x8B);
+    mem_write8(&mem, reset_addr + 27, 0x06);
+    mem_write16(&mem, reset_addr + 28, data_addr);
+
+    // ADD BX, DX (opcode 0x01, modrm 0xD3)
+    mem_write8(&mem, reset_addr + 30, 0x01);
+    mem_write8(&mem, reset_addr + 31, 0xD3);
+
+    // ADD AX, [data_addr] (opcode 0x03, modrm 0x06, disp16 <lo> <hi>)
+    mem_write8(&mem, reset_addr + 32, 0x03);
+    mem_write8(&mem, reset_addr + 33, 0x06);
+    mem_write16(&mem, reset_addr + 34, data_addr);
+
+    // SUB [data_addr], BX (opcode 0x29, modrm 0x1E, disp16 <lo> <hi>)
+    mem_write8(&mem, reset_addr + 36, 0x29);
+    mem_write8(&mem, reset_addr + 37, 0x1E);
+    mem_write16(&mem, reset_addr + 38, data_addr);
+
+    // SUB DX, BX (opcode 0x2B, modrm 0xDA)
+    mem_write8(&mem, reset_addr + 40, 0x2B);
+    mem_write8(&mem, reset_addr + 41, 0xDA);
+
+    // HLT
+    mem_write8(&mem, reset_addr + 42, 0xF4);
+
+    for (int i = 0; i < 44; ++i) {
     printf("addr=%u val=%02X\n", reset_addr + i, mem_read8(&mem, reset_addr + i));
     }
     printf("\n");

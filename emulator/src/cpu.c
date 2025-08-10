@@ -88,6 +88,26 @@ static void set_of_sub(CPU8086 *cpu, uint16_t a, uint16_t b, uint16_t result){
         cpu->flags &= ~FLAG_OF;
 }
 
+// 16-bit ADD with flag updates
+static uint16_t add16(CPU8086 *cpu, uint16_t a, uint16_t b) {
+    uint16_t result = a + b;
+    set_zf(cpu, result);
+    set_sf(cpu, result);
+    set_cf_add(cpu, a, b);
+    set_of_add(cpu, a, b, result);
+    return result;
+}
+
+// 16-bit SUB with flag updates
+static uint16_t sub16(CPU8086 *cpu, uint16_t a, uint16_t b) {
+    uint16_t result = a - b;
+    set_zf(cpu, result);
+    set_sf(cpu, result);
+    set_cf_sub(cpu, a, b);
+    set_of_sub(cpu, a, b, result);
+    return result;
+}
+
 int cpu_step(CPU8086 *cpu, Memory8086 *mem){
     uint32_t addr = (cpu->cs << 4) + cpu->ip;
     uint8_t opcode = mem_read8(mem, addr);
@@ -105,6 +125,106 @@ int cpu_step(CPU8086 *cpu, Memory8086 *mem){
     };
 
     printf("At %04X:%04X Opcode: 0x%02X\n", cpu->cs, cpu->ip, opcode);
+
+    //MOV r/m16, r16 (0x89) and MOV r16, r/m16 (0x8b)
+    if(opcode == 0x89 || opcode == 0x8B) {
+        uint8_t modrm = mem_read8(mem, addr + 1);
+        uint8_t mod, reg, rm;
+        decode_modrm(modrm, &mod, &reg, &rm);
+        int instr_len = 2; //opcode + modrm
+        if(mod == 3){
+            //register to register
+            if (opcode == 0x89) {
+                *reg_table[rm] = *reg_table[reg];
+            }
+            else{
+                *reg_table[reg] = *reg_table[rm];
+            }
+        }
+        else {
+            //memory operand
+            int16_t disp = 0;
+            uint32_t ea = 0;
+            if (mod == 0 && rm == 6){
+                ea = mem_read16(mem, addr + 2);
+                instr_len += 2;   
+            }
+            else if (mod == 1){
+                disp = (int8_t)mem_read8(mem, addr + 2);
+                instr_len += 1;
+            }
+            else if(mod == 2) {
+                disp = mem_read16(mem, addr + 2);
+                instr_len += 2;
+            }
+            if (!(mod == 0 && rm == 6)) {
+                ea = calc_ea(cpu, rm, disp);
+            }
+            if(opcode == 0x89){
+                mem_write16(mem, ea, *reg_table[reg]);
+            }
+            else {
+                *reg_table[reg] = mem_read16(mem, ea);
+            }
+        }
+        cpu->ip += instr_len;
+        return 1;
+    }
+
+    // ADD/SUB r/m16, r16 and r16, r/m16
+    if (opcode == 0x01 || opcode == 0x03 || opcode == 0x29 || opcode == 0x2B) {
+        uint8_t modrm = mem_read8(mem, addr + 1);
+        uint8_t mod, reg, rm;
+        decode_modrm(modrm, &mod, &reg, &rm);
+        int instr_len = 2; // opcode + modrm
+
+        if (mod == 3) {
+            // Register to register
+            if (opcode == 0x01) { // ADD r/m16, r16
+                *reg_table[rm] = add16(cpu, *reg_table[rm], *reg_table[reg]);
+            } else if (opcode == 0x03) { // ADD r16, r/m16
+                *reg_table[reg] = add16(cpu, *reg_table[reg], *reg_table[rm]);
+            } else if (opcode == 0x29) { // SUB r/m16, r16
+                *reg_table[rm] = sub16(cpu, *reg_table[rm], *reg_table[reg]);
+            } else if (opcode == 0x2B) { // SUB r16, r/m16
+                *reg_table[reg] = sub16(cpu, *reg_table[reg], *reg_table[rm]);
+            }
+        } else {
+            // Memory operand
+            int16_t disp = 0;
+            uint32_t ea = 0;
+            if (mod == 0 && rm == 6) {
+                ea = mem_read16(mem, addr + 2);
+                instr_len += 2;
+            } else if (mod == 1) {
+                disp = (int8_t)mem_read8(mem, addr + 2);
+                instr_len += 1;
+            } else if (mod == 2) {
+                disp = mem_read16(mem, addr + 2);
+                instr_len += 2;
+            }
+            if (!(mod == 0 && rm == 6)) {
+                ea = calc_ea(cpu, rm, disp);
+            }
+            if (opcode == 0x01) { // ADD [mem], r16
+                uint16_t val = mem_read16(mem, ea);
+                val = add16(cpu, val, *reg_table[reg]);
+                mem_write16(mem, ea, val);
+            } else if (opcode == 0x03) { // ADD r16, [mem]
+                uint16_t val = mem_read16(mem, ea);
+                *reg_table[reg] = add16(cpu, *reg_table[reg], val);
+            } else if (opcode == 0x29) { // SUB [mem], r16
+                uint16_t val = mem_read16(mem, ea);
+                val = sub16(cpu, val, *reg_table[reg]);
+                mem_write16(mem, ea, val);
+            } else if (opcode == 0x2B) { // SUB r16, [mem]
+                uint16_t val = mem_read16(mem, ea);
+                *reg_table[reg] = sub16(cpu, *reg_table[reg], val);
+            }
+        }
+        cpu->ip = addr + instr_len - (cpu->cs << 4); // Ensure IP is incremented by instr_len from current addr
+        return 1;
+    }
 
     // Handle 0x81: ADD/SUB r/m16, imm16 (ModR/M-based)
     if(opcode == 0x81) {
