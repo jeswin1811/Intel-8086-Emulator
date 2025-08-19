@@ -4,6 +4,7 @@
 #define FLAG_SF 0x0080
 #define FLAG_CF 0x0001
 #define FLAG_OF 0x0800
+#define FLAG_PF 0x0004
 
 #include<stdint.h>
 #include "../include/cpu.h"

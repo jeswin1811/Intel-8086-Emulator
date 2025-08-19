@@ -56,7 +56,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = C:/Users/jeswi/Documents/8086-emulator/emulator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:/Users/jeswi/Documents/8086-emulator/emulator/build
+CMAKE_BINARY_DIR = C:/Users/jeswi/Documents/8086-Emulator/emulator/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/emu8086.dir/depend.make
@@ -76,7 +76,7 @@ CMakeFiles/emu8086.dir/src/cpu.c.obj: CMakeFiles/emu8086.dir/flags.make
 CMakeFiles/emu8086.dir/src/cpu.c.obj: CMakeFiles/emu8086.dir/includes_C.rsp
 CMakeFiles/emu8086.dir/src/cpu.c.obj: C:/Users/jeswi/Documents/8086-emulator/emulator/src/cpu.c
 CMakeFiles/emu8086.dir/src/cpu.c.obj: CMakeFiles/emu8086.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/jeswi/Documents/8086-emulator/emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/emu8086.dir/src/cpu.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/emu8086.dir/src/cpu.c.obj"
 	C:/msys64/mingw64/bin/cc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/emu8086.dir/src/cpu.c.obj -MF CMakeFiles/emu8086.dir/src/cpu.c.obj.d -o CMakeFiles/emu8086.dir/src/cpu.c.obj -c C:/Users/jeswi/Documents/8086-emulator/emulator/src/cpu.c
 
 CMakeFiles/emu8086.dir/src/cpu.c.i: cmake_force
@@ -91,7 +91,7 @@ CMakeFiles/emu8086.dir/src/main.c.obj: CMakeFiles/emu8086.dir/flags.make
 CMakeFiles/emu8086.dir/src/main.c.obj: CMakeFiles/emu8086.dir/includes_C.rsp
 CMakeFiles/emu8086.dir/src/main.c.obj: C:/Users/jeswi/Documents/8086-emulator/emulator/src/main.c
 CMakeFiles/emu8086.dir/src/main.c.obj: CMakeFiles/emu8086.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/jeswi/Documents/8086-emulator/emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/emu8086.dir/src/main.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/emu8086.dir/src/main.c.obj"
 	C:/msys64/mingw64/bin/cc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/emu8086.dir/src/main.c.obj -MF CMakeFiles/emu8086.dir/src/main.c.obj.d -o CMakeFiles/emu8086.dir/src/main.c.obj -c C:/Users/jeswi/Documents/8086-emulator/emulator/src/main.c
 
 CMakeFiles/emu8086.dir/src/main.c.i: cmake_force
@@ -106,7 +106,7 @@ CMakeFiles/emu8086.dir/src/memory.c.obj: CMakeFiles/emu8086.dir/flags.make
 CMakeFiles/emu8086.dir/src/memory.c.obj: CMakeFiles/emu8086.dir/includes_C.rsp
 CMakeFiles/emu8086.dir/src/memory.c.obj: C:/Users/jeswi/Documents/8086-emulator/emulator/src/memory.c
 CMakeFiles/emu8086.dir/src/memory.c.obj: CMakeFiles/emu8086.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/jeswi/Documents/8086-emulator/emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/emu8086.dir/src/memory.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/emu8086.dir/src/memory.c.obj"
 	C:/msys64/mingw64/bin/cc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/emu8086.dir/src/memory.c.obj -MF CMakeFiles/emu8086.dir/src/memory.c.obj.d -o CMakeFiles/emu8086.dir/src/memory.c.obj -c C:/Users/jeswi/Documents/8086-emulator/emulator/src/memory.c
 
 CMakeFiles/emu8086.dir/src/memory.c.i: cmake_force
@@ -132,7 +132,7 @@ emu8086.exe: CMakeFiles/emu8086.dir/src/memory.c.obj
 emu8086.exe: CMakeFiles/emu8086.dir/build.make
 emu8086.exe: CMakeFiles/emu8086.dir/linkLibs.rsp
 emu8086.exe: CMakeFiles/emu8086.dir/objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:/Users/jeswi/Documents/8086-emulator/emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable emu8086.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable emu8086.exe"
 	C:/msys64/mingw64/bin/cmake.exe -E rm -f CMakeFiles/emu8086.dir/objects.a
 	C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/emu8086.dir/objects.a @CMakeFiles/emu8086.dir/objects1.rsp
 	C:/msys64/mingw64/bin/cc.exe -Wl,--whole-archive CMakeFiles/emu8086.dir/objects.a -Wl,--no-whole-archive -o emu8086.exe -Wl,--out-implib,libemu8086.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/emu8086.dir/linkLibs.rsp
@@ -146,6 +146,6 @@ CMakeFiles/emu8086.dir/clean:
 .PHONY : CMakeFiles/emu8086.dir/clean
 
 CMakeFiles/emu8086.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" C:/Users/jeswi/Documents/8086-emulator/emulator C:/Users/jeswi/Documents/8086-emulator/emulator C:/Users/jeswi/Documents/8086-emulator/emulator/build C:/Users/jeswi/Documents/8086-emulator/emulator/build C:/Users/jeswi/Documents/8086-emulator/emulator/build/CMakeFiles/emu8086.dir/DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" C:/Users/jeswi/Documents/8086-emulator/emulator C:/Users/jeswi/Documents/8086-emulator/emulator C:/Users/jeswi/Documents/8086-Emulator/emulator/build C:/Users/jeswi/Documents/8086-Emulator/emulator/build C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles/emu8086.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/emu8086.dir/depend
 

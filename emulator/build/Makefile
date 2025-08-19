@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = C:/Users/jeswi/Documents/8086-emulator/emulator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:/Users/jeswi/Documents/8086-emulator/emulator/build
+CMAKE_BINARY_DIR = C:/Users/jeswi/Documents/8086-Emulator/emulator/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:/Users/jeswi/Documents/8086-emulator/emulator/build/CMakeFiles C:/Users/jeswi/Documents/8086-emulator/emulator/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles C:/Users/jeswi/Documents/8086-Emulator/emulator/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:/Users/jeswi/Documents/8086-emulator/emulator/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

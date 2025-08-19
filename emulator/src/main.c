@@ -1,96 +1,47 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "../include/cpu.h"
 #include "../include/memory.h"
 
-int main() {
+// Loader for .com/.bin files
+int load_bin(Memory8086 *mem, const char *filename, uint16_t load_addr) {
+    FILE *f = fopen(filename, "rb");
+    if (!f) {
+        printf("Could not open %s\n", filename);
+        return 0;
+    }
+    fseek(f, 0, SEEK_END);
+    long size = ftell(f);
+    fseek(f, 0, SEEK_SET);
+    fread(&mem->data[load_addr], 1, size, f);
+    fclose(f);
+    printf("Loaded %ld bytes to 0x%04X\n", size, load_addr);
+    return 1;
+}
+
+int main(int argc, char **argv) {
     CPU8086 cpu;
     Memory8086 mem;
-
     memset(&mem, 0, sizeof(mem));
-
     cpu_init(&cpu);
+
+    if (argc < 2) {
+        printf("Usage: %s program.com\n", argv[0]);
+        return 1;
+    }
+
+    // Load .com file at 0x100 (typical for DOS .com)
+    if (!load_bin(&mem, argv[1], 0x100)) return 1;
+    cpu.cs = 0x0000;
+    cpu.ip = 0x0100;
 
     printf("8086 Emulator Started\n");
     printf("CS:IP = %04X:%04X\n",cpu.cs, cpu.ip);
 
-    //physical address reset vector calculate cheyan
-    uint32_t reset_addr = (cpu.cs << 4) + cpu.ip;
-
-    // MOV AX, 0x0001
-    mem_write8(&mem, reset_addr + 0, 0xB8);
-    mem_write16(&mem, reset_addr + 1, 0x0001);
-
-    // ADD AX, 0xFFFF (should set carry and overflow)
-    mem_write8(&mem, reset_addr + 3, 0x05);
-    mem_write16(&mem, reset_addr + 4, 0xFFFF);
-
-    // INC AX (should wrap to 0, set zero flag)
-    mem_write8(&mem, reset_addr + 6, 0x40);
-
-    // DEC AX (should go to 0xFFFF, set sign flag)
-    mem_write8(&mem, reset_addr + 7, 0x48);
-
-    // SUB AX, 0x0001 (should go to 0xFFFE)
-    mem_write8(&mem, reset_addr + 8, 0x2D);
-    mem_write16(&mem, reset_addr + 9, 0x0001);
-
-    // ADD BX, 0x1234 (opcode 0x81, modrm 0xC3)
-    mem_write8(&mem, reset_addr + 11, 0x81); // opcode
-    mem_write8(&mem, reset_addr + 12, 0xC3); // modrm
-    mem_write16(&mem, reset_addr + 13, 0x1234); // imm16
-
-    // SUB BX, 0x0001 (opcode 0x81, modrm 0xEB)
-    mem_write8(&mem, reset_addr + 15, 0x81); // opcode
-    mem_write8(&mem, reset_addr + 16, 0xEB); // modrm
-    mem_write16(&mem, reset_addr + 17, 0x0001); // imm16
-
-    // MOV BX, 0x1234
-    mem_write8(&mem, reset_addr + 19, 0xBB);
-    mem_write16(&mem, reset_addr + 20, 0x1234);
-
-    // Use 0x0100 as safe data address
-    uint16_t data_addr = 0x0100;
-
-    // MOV [data_addr], BX (0x89 0x1E <lo> <hi>)
-    mem_write8(&mem, reset_addr + 22, 0x89);
-    mem_write8(&mem, reset_addr + 23, 0x1E);
-    mem_write16(&mem, reset_addr + 24, data_addr);
-
-    // MOV AX, [data_addr] (0x8B 0x06 <lo> <hi>)
-    mem_write8(&mem, reset_addr + 26, 0x8B);
-    mem_write8(&mem, reset_addr + 27, 0x06);
-    mem_write16(&mem, reset_addr + 28, data_addr);
-
-    // ADD BX, DX (opcode 0x01, modrm 0xD3)
-    mem_write8(&mem, reset_addr + 30, 0x01);
-    mem_write8(&mem, reset_addr + 31, 0xD3);
-
-    // ADD AX, [data_addr] (opcode 0x03, modrm 0x06, disp16 <lo> <hi>)
-    mem_write8(&mem, reset_addr + 32, 0x03);
-    mem_write8(&mem, reset_addr + 33, 0x06);
-    mem_write16(&mem, reset_addr + 34, data_addr);
-
-    // SUB [data_addr], BX (opcode 0x29, modrm 0x1E, disp16 <lo> <hi>)
-    mem_write8(&mem, reset_addr + 36, 0x29);
-    mem_write8(&mem, reset_addr + 37, 0x1E);
-    mem_write16(&mem, reset_addr + 38, data_addr);
-
-    // SUB DX, BX (opcode 0x2B, modrm 0xDA)
-    mem_write8(&mem, reset_addr + 40, 0x2B);
-    mem_write8(&mem, reset_addr + 41, 0xDA);
-
-    // HLT
-    mem_write8(&mem, reset_addr + 42, 0xF4);
-
-    for (int i = 0; i < 44; ++i) {
-    printf("addr=%u val=%02X\n", reset_addr + i, mem_read8(&mem, reset_addr + i));
-    }
-    printf("\n");
-
     //HLT allel unknown opcode varunna vare work cheyunna fetch-execute loop
     while(cpu_step(&cpu, &mem)){
-        printf("AX=%04X BX=%04X CX=%04X DX=%04X IP=%04X FLAGS=%04X\n", cpu.ax, cpu.bx, cpu.cx, cpu.dx, cpu.ip, cpu.flags); //cpu state print cheyan
+        // No per-instruction print; output will be from DOS int 21h, ah=2 only
     }
     return 0;
 }

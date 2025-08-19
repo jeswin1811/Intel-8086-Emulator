@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "C:/Users/jeswi/Documents/8086-emulator/emulator")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "C:/Users/jeswi/Documents/8086-emulator/emulator/build")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "C:/Users/jeswi/Documents/8086-Emulator/emulator/build")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

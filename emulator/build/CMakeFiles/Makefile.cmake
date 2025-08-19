@@ -7,10 +7,10 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "C:/Users/jeswi/Documents/8086-emulator/emulator/CMakeLists.txt"
   "CMakeFiles/4.1.0/CMakeCCompiler.cmake"
   "CMakeFiles/4.1.0/CMakeRCCompiler.cmake"
   "CMakeFiles/4.1.0/CMakeSystem.cmake"
+  "C:/Users/jeswi/Documents/8086-emulator/emulator/CMakeLists.txt"
   "C:/msys64/mingw64/share/cmake/Modules/CMakeCCompiler.cmake.in"
   "C:/msys64/mingw64/share/cmake/Modules/CMakeCCompilerABI.c"
   "C:/msys64/mingw64/share/cmake/Modules/CMakeCInformation.cmake"
