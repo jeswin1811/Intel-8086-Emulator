@@ -1,8 +1,5 @@
 # Intel 8086 Emulator
 
-**Author:** Jeswin Thampichan Joseph  
-**GitHub:** [github.com/jeswin1811/Intel-8086-Emulator](https://github.com/jeswin1811/Intel-8086-Emulator)
-
 ---
 
 ## Overview
