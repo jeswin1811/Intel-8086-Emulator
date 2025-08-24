@@ -1,7 +1,5 @@
 # Intel 8086 Emulator
 
----
-
 ## Overview
 
 This project is a minimal but functional Intel 8086 emulator with:
@@ -11,6 +9,9 @@ This project is a minimal but functional Intel 8086 emulator with:
 - **Server:** TCP server (`emu_server.exe`) for running emulation remotely
 - **GUI frontend:** Python PyQt5 (`emu_gui.py`) for editing, assembling, and running programs
 - **Installer:** Windows installer generated with Inno Setup (`Emu8086Installer.exe`)
+
+<img width="1918" height="1137" alt="emupost1" src="https://github.com/user-attachments/assets/96ea7f97-0bbf-4cb8-af08-cd2fa9ba4bff" />
+
 
 ### Execution Model
 
