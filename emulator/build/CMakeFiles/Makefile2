@@ -64,10 +64,12 @@ CMAKE_BINARY_DIR = C:/Users/jeswi/Documents/8086-Emulator/emulator/build
 
 # The main recursive "all" target.
 all: CMakeFiles/emu8086.dir/all
+all: CMakeFiles/emu_server.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/emu8086.dir/codegen
+codegen: CMakeFiles/emu_server.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -76,6 +78,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/emu8086.dir/clean
+clean: CMakeFiles/emu_server.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -109,6 +112,38 @@ CMakeFiles/emu8086.dir/codegen:
 CMakeFiles/emu8086.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu8086.dir/build.make CMakeFiles/emu8086.dir/clean
 .PHONY : CMakeFiles/emu8086.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/emu_server.dir
+
+# All Build rule for target.
+CMakeFiles/emu_server.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles --progress-num=5,6,7,8 "Built target emu_server"
+.PHONY : CMakeFiles/emu_server.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/emu_server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/emu_server.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles 0
+.PHONY : CMakeFiles/emu_server.dir/rule
+
+# Convenience name for target.
+emu_server: CMakeFiles/emu_server.dir/rule
+.PHONY : emu_server
+
+# codegen rule for target.
+CMakeFiles/emu_server.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles --progress-num=5,6,7,8 "Finished codegen for target emu_server"
+.PHONY : CMakeFiles/emu_server.dir/codegen
+
+# clean rule for target.
+CMakeFiles/emu_server.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/clean
+.PHONY : CMakeFiles/emu_server.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

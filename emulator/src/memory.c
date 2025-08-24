@@ -8,7 +8,6 @@ uint8_t mem_read8(Memory8086 *mem, uint32_t addr){
 }
 
 void mem_write8(Memory8086 *mem, uint32_t addr, uint8_t value){
-    printf("mem_write8: addr=%u value=%02X\n", addr, value);
     if(addr < MEMORY_SIZE)
         mem->data[addr] = value;
 }
@@ -20,7 +19,6 @@ uint16_t mem_read16(Memory8086 *mem, uint32_t addr){
 }
 
 void mem_write16(Memory8086 *mem, uint32_t addr, uint16_t value){
-    printf("mem_write16: addr=%u value=%04X\n", addr, value);
     mem_write8(mem, addr, value & 0xFF);
     mem_write8(mem, addr + 1, (value >> 8) & 0xFF);
 }

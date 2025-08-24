@@ -22,4 +22,11 @@ void cpu_init(CPU8086 *cpu);
 
 int cpu_step(CPU8086 *cpu, Memory8086 *mem);
 
+// Output buffer exported for external frontends
+extern char emu_output[];
+extern size_t emu_out_pos;
+void emu_putchar(char c);
+void emu_puts(const char *s);
+void emu_output_flush(void);
+
 #endif

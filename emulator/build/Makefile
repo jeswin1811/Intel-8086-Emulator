@@ -129,12 +129,26 @@ emu8086/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu8086.dir/build.make CMakeFiles/emu8086.dir/build
 .PHONY : emu8086/fast
 
+#=============================================================================
+# Target rules for targets named emu_server
+
+# Build rule for target.
+emu_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 emu_server
+.PHONY : emu_server
+
+# fast build rule for target.
+emu_server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/build
+.PHONY : emu_server/fast
+
 src/cpu.obj: src/cpu.c.obj
 .PHONY : src/cpu.obj
 
 # target to build an object file
 src/cpu.c.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu8086.dir/build.make CMakeFiles/emu8086.dir/src/cpu.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/src/cpu.c.obj
 .PHONY : src/cpu.c.obj
 
 src/cpu.i: src/cpu.c.i
@@ -143,6 +157,7 @@ src/cpu.i: src/cpu.c.i
 # target to preprocess a source file
 src/cpu.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu8086.dir/build.make CMakeFiles/emu8086.dir/src/cpu.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/src/cpu.c.i
 .PHONY : src/cpu.c.i
 
 src/cpu.s: src/cpu.c.s
@@ -151,6 +166,7 @@ src/cpu.s: src/cpu.c.s
 # target to generate assembly for a file
 src/cpu.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu8086.dir/build.make CMakeFiles/emu8086.dir/src/cpu.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/src/cpu.c.s
 .PHONY : src/cpu.c.s
 
 src/main.obj: src/main.c.obj
@@ -183,6 +199,7 @@ src/memory.obj: src/memory.c.obj
 # target to build an object file
 src/memory.c.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu8086.dir/build.make CMakeFiles/emu8086.dir/src/memory.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/src/memory.c.obj
 .PHONY : src/memory.c.obj
 
 src/memory.i: src/memory.c.i
@@ -191,6 +208,7 @@ src/memory.i: src/memory.c.i
 # target to preprocess a source file
 src/memory.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu8086.dir/build.make CMakeFiles/emu8086.dir/src/memory.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/src/memory.c.i
 .PHONY : src/memory.c.i
 
 src/memory.s: src/memory.c.s
@@ -199,7 +217,32 @@ src/memory.s: src/memory.c.s
 # target to generate assembly for a file
 src/memory.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu8086.dir/build.make CMakeFiles/emu8086.dir/src/memory.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/src/memory.c.s
 .PHONY : src/memory.c.s
+
+src/server.obj: src/server.c.obj
+.PHONY : src/server.obj
+
+# target to build an object file
+src/server.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/src/server.c.obj
+.PHONY : src/server.c.obj
+
+src/server.i: src/server.c.i
+.PHONY : src/server.i
+
+# target to preprocess a source file
+src/server.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/src/server.c.i
+.PHONY : src/server.c.i
+
+src/server.s: src/server.c.s
+.PHONY : src/server.s
+
+# target to generate assembly for a file
+src/server.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emu_server.dir/build.make CMakeFiles/emu_server.dir/src/server.c.s
+.PHONY : src/server.c.s
 
 # Help Target
 help:
@@ -210,6 +253,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... emu8086"
+	@echo "... emu_server"
 	@echo "... src/cpu.obj"
 	@echo "... src/cpu.i"
 	@echo "... src/cpu.s"
@@ -219,6 +263,9 @@ help:
 	@echo "... src/memory.obj"
 	@echo "... src/memory.i"
 	@echo "... src/memory.s"
+	@echo "... src/server.obj"
+	@echo "... src/server.i"
+	@echo "... src/server.s"
 .PHONY : help
 
 

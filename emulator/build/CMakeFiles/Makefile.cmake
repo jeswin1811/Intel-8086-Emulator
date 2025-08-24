@@ -125,4 +125,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/emu8086.dir/DependInfo.cmake"
+  "CMakeFiles/emu_server.dir/DependInfo.cmake"
   )

@@ -1,3 +1,4 @@
 C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles/emu8086.dir
+C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles/emu_server.dir
 C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles/edit_cache.dir
 C:/Users/jeswi/Documents/8086-Emulator/emulator/build/CMakeFiles/rebuild_cache.dir
